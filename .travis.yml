@@ -5,18 +5,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t stephengrider/docker-react -f Dockerfile.dev .
+  - docker build -t nabeelhamadal/docker-react -f ./Dockerfile.dev ./
 
 script:
-  - docker run -e CI=true stephengrider/docker-react npm run test
+  - docker run -e CI=true nabeelhamadal/docker-react npm run test    # -e CI=true to run then stop docker server (docker daemon)
 
 deploy:
   provider: elasticbeanstalk
-  region: 'us-east-1'
-  app: 'docker-react'
-  env: 'Dockerreact-env'
-  bucket_name: 'elasticbeanstalk-us-east-1-500139711733'
-  bucket_path: 'docker-react'
+  region: "eu-west-2"
+  app: "docker-react"
+  env: "Dockerreact-env-1"
+  bucket_name: "elasticbeanstalk-eu-west-2-500139711733"
+  bucket_path: "docker-react"
   on:
     branch: main
   access_key_id: $AWS_ACCESS_KEY
